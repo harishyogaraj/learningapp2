@@ -1,12 +1,16 @@
-package com.learning.serviceImpl;
+package com.learning.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.learning.dto.Food;
+import com.learning.dto.FoodType;
+import com.learning.exception.IdNotFoundException;
+import com.learning.payload.request.FoodRequest;
 import com.learning.repo.FoodRepo;
 import com.learning.service.FoodService;
 
@@ -24,6 +28,7 @@ public class FoodServiceImpl implements FoodService {
 			return optional;
 		return null;
 	}
+	
 
 	@Override
 	public Optional<List<Food>> getAllUsers() {
@@ -50,7 +55,6 @@ public class FoodServiceImpl implements FoodService {
 		Food optioanl=this.getFoodById(id);
 		if(optioanl==null)
 		{
-//			throw new IdNotFound("record not found");
 			return null;
 		}
 		else
@@ -58,8 +62,21 @@ public class FoodServiceImpl implements FoodService {
 			foodRepo.deleteById(id);
 			return "success";
 		}
-		
-	
 	}
 
+	@Override
+	public Optional<List<Food>> getAllfoodbytypes(FoodType foodType) {
+		// TODO Auto-generated method stub
+		return foodRepo.findByFoodTypes(foodType);
+		}
+
+
+	@Override
+	public Food updateFood(Integer foodId, FoodRequest food) throws IdNotFoundException {
+		// TODO Auto-generated method stub
+		if(!this.foodRepo.existsById(foodId))
+			throw new IdNotFoundException("invalid id");
+		
+		return foodRepo.save(food);
+	}
 }

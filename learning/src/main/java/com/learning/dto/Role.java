@@ -1,7 +1,5 @@
 package com.learning.dto;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,27 +7,26 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-public class FoodType {
-
+public class Role {
 	
-	@Id 
+	@Id //Id must be auto generated/increment
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int foodId;
+	private int roleId;
+	
+	
 	
 	@Enumerated(EnumType.STRING)
-	private EFOODTYPE foodType;
+	@Column(length = 30)
+	private EROLE roleName;
+	
+	
 }

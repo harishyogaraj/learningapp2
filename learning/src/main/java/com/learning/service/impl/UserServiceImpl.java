@@ -1,4 +1,4 @@
-package com.learning.serviceImpl;
+package com.learning.service.impl;
 
 import java.util.List;
 import java.util.Optional;

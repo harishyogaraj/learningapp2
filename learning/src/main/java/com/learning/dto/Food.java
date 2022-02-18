@@ -31,7 +31,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Food {
+public class Food implements Comparable<Food>{
 
 	@NotBlank
 	private String foodName;
@@ -52,5 +52,19 @@ public class Food {
 	@ManyToMany
 	@JoinTable(name="food_types",joinColumns = @JoinColumn(name="id")
 	, inverseJoinColumns = @JoinColumn(name="foodId"))
-	private Set<FoodType> foodType=new HashSet<FoodType>();
+	private Set<FoodType> foodTypes=new HashSet<FoodType>();
+	
+	@Override
+	public int compareTo(Food o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public Food(String foodName, int foodCast, String discription, String foodPic) {
+		// TODO Auto-generated constructor stub
+		this.foodCast=foodCast;
+		this.foodName=foodName;
+		this.foodPic=foodPic;
+		this.discription=discription;
+	}
 }

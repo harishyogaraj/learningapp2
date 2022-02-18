@@ -1,6 +1,6 @@
 package com.learning.dto;
 
-public enum EFoodType {
+public enum EFOODTYPE {
 
 	Indian,
 	Chinese,
